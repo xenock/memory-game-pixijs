@@ -1,11 +1,11 @@
 {
-  "name": "es6-pixi",
-  "version": "0.5.0",
-  "description": "Bootstraping a Pixi.js project with ES6 features and a complete developpment setup.",
+  "name": "memory game",
+  "version": "1.0.0",
+  "description": "The wonderful memory game is here again!",
   "main": "build/index.html",
-  "author": "Komrod",
+  "author": "Miguel Romero Moracho",
   "license": "MIT",
-  "repository": "https://github.com/Komrod/pixi-es6",
+  "repository": "https://github.com/xenock/memory-game-pixijs",
   "keywords": [
     "pixi",
     "pixi.js",
@@ -28,7 +28,7 @@
     "pixi example"
   ],
   "scripts": {
-    "start": "SET NODE_ENV=dev && npm run watch",
+    "start": "NODE_ENV=dev && npm run watch",
     "watch": "webpack --config webpack.config.js --progress --inline --colors --watch",
     "build": "npm run build-production",
     "build-production": "SET NODE_ENV=production && npm run build-app",
