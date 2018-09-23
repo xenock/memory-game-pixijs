@@ -3,6 +3,7 @@ import {
     loader,
     Sprite,
 } from 'pixi.js'
+import {randomDeckNumber, randomNumber} from './utils.js'
 
 const {innerWidth: width, innerHeight: height} = window
 const backgroundColor = {backgroundColor : 0x2A1D32}
@@ -24,16 +25,11 @@ const setup = () => {
     let numberOfCards = 6
     let spacing = 200
 
-    function randomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min
-    }
-
-
     for(let i = 0; i <= numberOfCards; i++) {
         let blob = new Sprite(id[`deck_${i}.png`])
 
         blob.x = spacing * i
-        blob.y = randomInt(0, app.stage.height)
+        blob.y = randomNumber(0, app.stage.height)
 
         app.stage.addChild(blob)
     }
