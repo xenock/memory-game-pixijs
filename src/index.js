@@ -2,6 +2,7 @@ import {
     Application,
     loader,
     Sprite,
+    Texture
 } from 'pixi.js'
 import {randomDeckNumber, randomNumber} from './utils.js'
 
@@ -19,19 +20,30 @@ const applicationConfig = {
 const app = new Application(applicationConfig)
 document.body.appendChild(app.view)
 
+const onClick = () => {
+    console.log(arguments)
+}
+
 const setup = () => {
-    let id = loader.resources["spritesheet.json"].textures
+    let deckTextures = loader.resources["spritesheet.json"].textures
 
     let numberOfCards = 6
     let spacing = 200
 
     for(let i = 0; i <= numberOfCards; i++) {
-        let blob = new Sprite(id[`deck_${i}.png`])
+        let backTexture = Texture.from(deckTextures[`back_${i}.png`])
+        let frontTexture = Texture.from(deckTextures[`front_${i}.png`])
+        let card = new Sprite(backTexture)
 
-        blob.x = spacing * i
-        blob.y = randomNumber(0, app.stage.height)
+        card.bol = false
+        card.interactive = true
+        console.log("card.interactive = ", card.interactive);
+        card.buttonMode = true
+        card.x = spacing * i
+        card.y = randomNumber(0, app.stage.height)
 
-        app.stage.addChild(blob)
+        card.on('pointerDown', onClick)
+        app.stage.addChild(card)
     }
 }
 
