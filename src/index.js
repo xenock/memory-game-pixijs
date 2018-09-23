@@ -1,17 +1,23 @@
+import {
+    Application,
+    loader,
+    Sprite,
+} from 'pixi.js'
 
-/* global PIXI */
+const {innerWidth, innerHeight} = window
 
-import patrick from './patrick.js'
-import {getDeck} from './fakeFetch.js'
-import card from '../assets/cards/symbol10.png'
-
-const app = new PIXI.Application(window.innerWidth, window.innerHeight, {backgroundColor : 0x1099bb})
+const app = new Application(innerWidth, innerHeight, {backgroundColor : 0x2A1D32})
 document.body.appendChild(app.view)
-app.stage.addChild(patrick)
-app.stage.addChild(card)
 
-console.log('this is a ', getDeck('../assets',8))
+const setup = () => {
+    let id = loader.resources["spritesheet.json"].textures;
 
-app.ticker.add(delta => {
-  patrick.rotation += 0.01 * delta
-})
+    let card = new Sprite(id["deck_1.png"]);
+    app.stage.addChild(card);
+
+    card.x = app.stage.width - card.width
+    card.y = app.stage.height / 2 - card.height / 2;
+    app.stage.addChild(card);
+}
+
+loader.add('spritesheet.json').load(setup)

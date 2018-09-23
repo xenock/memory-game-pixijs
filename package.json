@@ -1,5 +1,5 @@
 {
-  "name": "memory game",
+  "name": "memory_game",
   "version": "1.0.0",
   "description": "The wonderful memory game is here again!",
   "main": "build/index.html",
@@ -51,6 +51,7 @@
     "eslint": "^4.7.2",
     "eslint-loader": "^1.9.0",
     "json-loader": "^0.5.4",
+    "pixi.js": "^4.8.2",
     "transform-loader": "^0.2.3",
     "webpack": "^1.12.9",
     "webpack-notifier": "^1.5.0"
