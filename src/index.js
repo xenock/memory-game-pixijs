@@ -4,20 +4,39 @@ import {
     Sprite,
 } from 'pixi.js'
 
-const {innerWidth, innerHeight} = window
+const {innerWidth: width, innerHeight: height} = window
+const backgroundColor = {backgroundColor : 0x2A1D32}
 
-const app = new Application(innerWidth, innerHeight, {backgroundColor : 0x2A1D32})
+const applicationConfig = {
+    width,
+    height,
+    antialias: true,
+    transparent: false,
+    resolution: 1
+}
+
+const app = new Application(applicationConfig)
 document.body.appendChild(app.view)
 
 const setup = () => {
-    let id = loader.resources["spritesheet.json"].textures;
+    let id = loader.resources["spritesheet.json"].textures
 
-    let card = new Sprite(id["deck_1.png"]);
-    app.stage.addChild(card);
+    let numberOfCards = 6
+    let spacing = 200
 
-    card.x = app.stage.width - card.width
-    card.y = app.stage.height / 2 - card.height / 2;
-    app.stage.addChild(card);
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+
+    for(let i = 0; i <= numberOfCards; i++) {
+        let blob = new Sprite(id[`deck_${i}.png`])
+
+        blob.x = spacing * i
+        blob.y = randomInt(0, app.stage.height)
+
+        app.stage.addChild(blob)
+    }
 }
 
 loader.add('spritesheet.json').load(setup)
