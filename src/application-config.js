@@ -6,5 +6,6 @@ export const applicationConfig = {
     height,
     antialias: true,
     transparent: false,
-    resolution: 1
+    resolution: 1,
+    backgroundColor
 }
